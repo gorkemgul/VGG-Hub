@@ -1,2 +1,3 @@
-# PyTorch-VGG16
-PyTorch implementation of VGG16
+<div>
+  <h1 align = "center">PyTorch Implementation of VGG16</h1>
+</div>
