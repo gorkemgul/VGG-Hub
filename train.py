@@ -11,11 +11,11 @@ class VGGTrainer():
         self.model = VGG16().to(self.device)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr = lr)
         self.criterion = torch.nn.CrossEntropyLoss()
-        self.datasetname = "mnist"
+        self.datasetname = "cifar10"
 
 
     def Train(self):
-        train_dataloader = Dataset().__getitem__(train = True, dataset_name = self.datasetname)
+        train_dataloader = Dataset(image_size = 224).__getitem__(train = True, dataset_name = self.datasetname)
         for epoch in tqdm(range(self.epochs)):
             for batch_idx, (X, y) in enumerate(train_dataloader):
                 X = X.to(self.device)
@@ -28,7 +28,7 @@ class VGGTrainer():
                 if (batch_idx % 20) == 0:
                     print(f"Epoch: {epoch} | Loss: {loss.item()}")
 
-        test_dataloader = Dataset().__getitem__(train = False, dataset_name = self.datasetname)
+        test_dataloader = Dataset(image_size = 224).__getitem__(train = False, dataset_name = self.datasetname)
         correct = 0
         total = 0
         for x_test, y_test in test_dataloader:
