@@ -16,6 +16,8 @@ class VGGTrainer():
 
     def Train(self):
         train_dataloader = Dataset(image_size = 224).__getitem__(train = True, dataset_name = self.datasetname)
+        test_dataloader = Dataset(image_size=224).__getitem__(train=False, dataset_name=self.datasetname)
+
         for epoch in tqdm(range(self.epochs)):
             for batch_idx, (X, y) in enumerate(train_dataloader):
                 X = X.to(self.device)
@@ -25,22 +27,22 @@ class VGGTrainer():
                 self.optimizer.zero_grad()
                 loss.backward()
                 self.optimizer.step()
-                if (batch_idx % 20) == 0:
-                    print(f"Epoch: {epoch} | Loss: {loss.item()}")
+                if (batch_idx % 50) == 0:
+                    print(f"Epoch: {epoch + 1}/{self.epochs} | Loss: {loss.item()}")
 
-        test_dataloader = Dataset(image_size = 224).__getitem__(train = False, dataset_name = self.datasetname)
-        correct = 0
-        total = 0
-        for x_test, y_test in test_dataloader:
-            x_test = x_test.to(self.device)
-            y_test = y_test.to(self.device)
-            outputs = self.model(x_test)
-            _, predictions = torch.max(outputs, 1)
-            total += y_test.shape[0]
-            correct += (predictions == y_test).sum()
+            correct = 0
+            total = 0
+            with torch.inference_mode():
+                for x_test, y_test in test_dataloader:
+                    x_test = x_test.to(self.device)
+                    y_test = y_test.to(self.device)
+                    outputs = self.model(x_test)
+                    _, predictions = torch.max(outputs, 1)
+                    total += y_test.shape[0]
+                    correct += (predictions == y_test).sum()
 
-        accuracy = 100 * correct / float(total)
-        print(f"Accuracy on the test images: {accuracy} ")
+                accuracy = 100 * correct / float(total)
+                print(f"Accuracy on the test images: {accuracy} ")
 
 
 if __name__ == "__main__":
