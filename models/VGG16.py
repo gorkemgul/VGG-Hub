@@ -4,7 +4,7 @@ class VGG16(nn.Module):
     def __init__(self):
         super(VGG16, self).__init__()
 
-        self.conv1 = nn.Conv2d(in_channels = 3, out_channels = 64, kernel_size = 3, padding = 1)
+        self.conv1 = nn.Conv2d(in_channels = 1, out_channels = 64, kernel_size = 3, padding = 1)
         self.conv2 = nn.Conv2d(in_channels = 64, out_channels = 64, kernel_size = 3, padding = 1)
         self.conv3 = nn.Conv2d(in_channels = 64, out_channels = 128, kernel_size = 3, padding = 1)
 
@@ -20,6 +20,7 @@ class VGG16(nn.Module):
         self.conv11 = nn.Conv2d(in_channels = 512, out_channels = 512, kernel_size = 3, padding = 1)
         self.conv12 = nn.Conv2d(in_channels = 512, out_channels = 512, kernel_size = 3, padding = 1)
         self.conv13 = nn.Conv2d(in_channels = 512, out_channels = 512, kernel_size = 3, padding = 1)
+        self.conv14 = nn.Conv2d(in_channels = 512, out_channels = 512, kernel_size = 3, padding = 1)
 
         self.fc1 = nn.Linear(in_features = 25088, out_features = 4096)
         self.fc2 = nn.Linear(in_features = 4096, out_features = 4096)
