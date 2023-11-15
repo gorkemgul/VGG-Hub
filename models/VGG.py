@@ -12,11 +12,10 @@ class VGG(nn.Module):
         self.fcs = self._create_fcs()
 
     def forward(self, x):
-        x = self.layers
+        x = self.layers(x)
         x = x.reshape(x.shape[0], -1)
         x = self.fcs(x)
         return x
-
 
 
     def _read_from_yaml(self, config_path, chosen_structure):
@@ -63,4 +62,10 @@ class VGG(nn.Module):
 
 if __name__ == "__main__":
     model = VGG(chosen_structure = "VGG16")
+    print(model)
+    BATCH_SIZE = 3
+    x = torch.randn(3, 3, 224, 224)
+    out = model(x)
+    assert out.shape == torch.Size([BATCH_SIZE, 1000])
+
 
