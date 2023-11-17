@@ -1,6 +1,23 @@
 # VGG Model Structures
 
 # TODO: VGG 11, 13 will be implemented.
+VGG11:
+  [
+    64,
+    "M",
+    128,
+    "M",
+    256,
+    256,
+    "M",
+    512,
+    512,
+    "M",
+    512,
+    512
+    "M"
+  ]
+
 
 VGG16:
   [
