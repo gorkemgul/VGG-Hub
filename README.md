@@ -3,3 +3,6 @@
   <!--<img src = "docs/VGG16.png" alt = "architecture" width = 680px>-->
 </div>
 <p>A Hub contains PyTorch based VGG model implementations.</p><br>
+
+### Features
+- [ ] Support Pip installation
