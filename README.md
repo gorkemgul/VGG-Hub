@@ -4,5 +4,5 @@
 </div>
 <p>A Hub contains PyTorch based VGG model implementations.</p><br>
 
-### Features
+### Features will be added
 - [ ] Support Pip installation
