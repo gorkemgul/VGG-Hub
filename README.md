@@ -1,6 +1,6 @@
 <div align = "center">
   <h1>VGG HUB</h1>
-  <!--<img src = "docs/VGG16.png" alt = "architecture" width = 680px>-->
+  <img src = "docs/assets/vgg-hub-banner.gif" alt = "architecture"  width = 1000px height = 400px>
 </div>
 
 <h1>Overview</h1>
