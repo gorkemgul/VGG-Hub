@@ -1,6 +1,6 @@
 import torch
 from utils.dataset import Dataset
-from models.VGG16 import VGG16
+from models.VGG import VGG
 from tqdm import tqdm
 
 class VGGTrainer():
@@ -8,7 +8,7 @@ class VGGTrainer():
         self.batch_size = 16
         self.epochs = epochs
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model = VGG16().to(self.device)
+        self.model = VGG().to(self.device)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr = lr)
         self.criterion = torch.nn.CrossEntropyLoss()
         self.datasetname = "cifar10"

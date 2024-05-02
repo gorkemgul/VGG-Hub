@@ -7,7 +7,7 @@ class VGG(nn.Module):
         super().__init__()
         self.in_channels = in_channels
         self.num_classes = num_classes
-        self.model_structure = self._read_from_yaml(config_path = "../cfg/config.yaml", chosen_structure = chosen_structure)
+        self.model_structure = self._read_from_yaml(config_path = "cfg/config.yaml", chosen_structure = chosen_structure)
         self.layers = self._make_layers()
         self.fcs = self._create_fcs()
 
