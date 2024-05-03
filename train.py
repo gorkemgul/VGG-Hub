@@ -16,7 +16,7 @@ class VGGTrainer():
 
     def Train(self):
         train_dataloader = Dataset(image_size = 224).__getitem__(train = True, dataset_name = self.datasetname)
-        test_dataloader = Dataset(image_size=224).__getitem__(train=False, dataset_name=self.datasetname)
+        test_dataloader = Dataset(image_size = 224).__getitem__(train=False, dataset_name=self.datasetname)
 
         for epoch in tqdm(range(self.epochs)):
             for batch_idx, (X, y) in enumerate(train_dataloader):
@@ -28,7 +28,7 @@ class VGGTrainer():
                 loss.backward()
                 self.optimizer.step()
                 if (batch_idx % 50) == 0:
-                    print(f"Epoch: {epoch + 1}/{self.epochs} | Loss: {loss.item()}")
+                    print(f"Epoch: {epoch + 1}/{self.epochs} | Step {batch_idx + 1}/{Dataset().__len__(train=True)} | Loss: {loss.item()}")
 
             correct = 0
             total = 0
