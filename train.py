@@ -18,7 +18,8 @@ class VGGTrainer():
         train_dataloader = Dataset(image_size = 224).__getitem__(train = True, dataset_name = self.datasetname)
         test_dataloader = Dataset(image_size = 224).__getitem__(train=False, dataset_name=self.datasetname)
 
-        for epoch in tqdm(range(self.epochs)):
+        loop = tqdm(range(self.epochs), leave=True)
+        for epoch in loop:
             for batch_idx, (X, y) in enumerate(train_dataloader):
                 X = X.to(self.device)
                 y = y.to(self.device)
@@ -27,8 +28,9 @@ class VGGTrainer():
                 self.optimizer.zero_grad()
                 loss.backward()
                 self.optimizer.step()
-                if (batch_idx % 50) == 0:
-                    print(f"Epoch: {epoch + 1}/{self.epochs} | Step {batch_idx + 1}/{Dataset().__len__(train=True)} | Loss: {loss.item()}")
+                # if (batch_idx % 100) == 0:
+                    # print(f"Epoch: {epoch + 1}/{self.epochs} | Step {batch_idx + 1}/{Dataset().__len__(train=True)} | Loss: {loss.item()}")
+                loop.set_postfix(epoch = epoch + 1,  batch = f"{batch_idx + 1 } / {Dataset().__len__(train=True)}" , loss = loss.item(),)
 
             correct = 0
             total = 0
