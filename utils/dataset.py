@@ -54,3 +54,8 @@ class Dataset(Dataset):
             print("Wrong Dataset name! One is only allowed to choose 'MNIST' or 'CIFAR10' dataset! ")
 
         return data_loader
+    def __len__(self, train=True):
+        if train:
+            return len(self.__getitem__(train=True))
+        else:
+            return len(self.__getitem__(train=False))
