@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import yaml
-
+from torchsummary import summary
 class VGG(nn.Module):
     def __init__(self, in_channels = 3, num_classes = 10, chosen_structure = "VGG16"):
         super().__init__()
@@ -36,7 +36,7 @@ class VGG(nn.Module):
                 out_channels = m
                 layers.append(
                     nn.Sequential(
-                        nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=3, stride=1, padding=0),
+                        nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=3, stride=1, padding=1),
                         nn.ReLU()
                     )
                 )
@@ -62,10 +62,10 @@ class VGG(nn.Module):
 
 if __name__ == "__main__":
     model = VGG(chosen_structure = "VGG16")
-    print(model)
+    # summary(model, input_size = (3, 224, 224))
     BATCH_SIZE = 3
     x = torch.randn(3, 3, 224, 224)
     out = model(x)
-    assert out.shape == torch.Size([BATCH_SIZE, 1000])
+    assert out.shape == torch.Size([BATCH_SIZE, 10])
 
 
