@@ -22,10 +22,16 @@ VGG-Hub is a comprehensive collection of PyTorch implementations for the VGG (Vi
 # Clone the repository
 git clone https://github.com/gorkemgul/VGG-Hub.git
 
-# 
+# Move to the working directory
 cd VGG-Hub
 
 # Install dependencies
 pip install -r requirements.txt
+```
+
+<h3>Training</h3>
+
+```bash
+python train.py
 ```
 
