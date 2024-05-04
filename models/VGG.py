@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import yaml
-from torchsummary import summary
+
 class VGG(nn.Module):
     def __init__(self, in_channels = 3, num_classes = 10, chosen_structure = "VGG16"):
         super().__init__()
